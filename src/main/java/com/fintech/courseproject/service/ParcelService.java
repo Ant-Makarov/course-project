@@ -20,7 +20,7 @@ public class ParcelService {
     public void saveParcel(Parcel parcel) {
         parcel.setCreationDate(new Timestamp(System.currentTimeMillis()));
         parcel.setSendStatus("Not delivered");
-        Parcel savedParcel = parcelRepository.save(parcel);
+        parcelRepository.save(parcel);
         log.info("Parcel has been created successfully: " + parcel);
     }
 
