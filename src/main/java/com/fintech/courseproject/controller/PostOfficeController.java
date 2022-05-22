@@ -1,7 +1,7 @@
 package com.fintech.courseproject.controller;
 
-import com.fintech.courseproject.entity.User;
-import com.fintech.courseproject.service.UserService;
+import com.fintech.courseproject.entity.PostOffice;
+import com.fintech.courseproject.service.PostOfficeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,18 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/post-office")
 @Slf4j
-public class UserController {
+public class PostOfficeController {
 
     @Autowired
-    private UserService userService;
+    private PostOfficeService postOfficeService;
 
     @PostMapping("/save")
-    public void saveUser(@RequestBody User user) {
-        log.info("Handling user registration: " + user);
-        userService.saveUser(user);
+    public void createPostOffice(@RequestBody PostOffice postOffice) {
+        log.info("Handling post office creation: " + postOffice);
+        postOfficeService.savePostOffice(postOffice);
     }
-
-
 }
