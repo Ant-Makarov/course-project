@@ -4,8 +4,8 @@ import com.fintech.courseproject.entity.Notification;
 import com.fintech.courseproject.entity.Parcel;
 import com.fintech.courseproject.repository.NotificationRepository;
 import com.fintech.courseproject.repository.ParcelRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +15,11 @@ import java.util.List;
 @Service
 @Slf4j
 @Transactional
+@RequiredArgsConstructor
 public class NotificationService {
 
-    @Autowired
-    private NotificationRepository notificationRepository;
-
-    @Autowired
-    private ParcelRepository parcelRepository;
+    private final NotificationRepository notificationRepository;
+    private final ParcelRepository parcelRepository;
 
     @Scheduled(initialDelay = 5*1000, fixedDelay = 2*1000)
     public void createNotification() {
