@@ -16,7 +16,7 @@ public class PostOfficeService {
 
     private final PostOfficeRepository postOfficeRepository;
 
-    public void savePostOffice(PostOffice postOffice) {
+    public PostOffice savePostOffice(PostOffice postOffice) {
         List<PostOffice> postOfficeList = postOfficeRepository.findAll();
         PostOffice savedPostOffice;
         boolean isPostOfficeNotExists = postOfficeList.stream().noneMatch(p -> p.getDescription()
@@ -30,6 +30,7 @@ public class PostOfficeService {
             log.error("This post-office: " + postOffice + "already exists!");
             throw new PostOfficeAlreadyExistsException(postOffice.getDescription());
         }
+        return postOffice;
     }
 
 }

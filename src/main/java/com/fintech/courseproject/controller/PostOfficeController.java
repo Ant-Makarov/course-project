@@ -18,8 +18,8 @@ public class PostOfficeController {
     private PostOfficeService postOfficeService;
 
     @PostMapping("/save")
-    public void createPostOffice(@RequestBody PostOffice postOffice) {
+    public PostOffice createPostOffice(@RequestBody PostOffice postOffice) {
         log.info("Handling post office creation: " + postOffice);
-        postOfficeService.savePostOffice(postOffice);
+        return postOfficeService.savePostOffice(postOffice);
     }
 }

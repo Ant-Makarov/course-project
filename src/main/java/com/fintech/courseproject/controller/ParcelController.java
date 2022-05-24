@@ -15,14 +15,14 @@ public class ParcelController {
     private ParcelService parcelService;
 
     @PostMapping("/save")
-    public void createParcel(@RequestBody Parcel parcel) {
+    public Parcel createParcel(@RequestBody Parcel parcel) {
         log.info("Handling parcel creation: " + parcel);
-        parcelService.saveParcel(parcel);
+        return parcelService.saveParcel(parcel);
     }
 
     @PostMapping("/take")
-    public void takeParcel(@RequestBody Parcel parcel) {
+    public Parcel takeParcel(@RequestBody Parcel parcel) {
         log.info("Handling parcel taking: " + parcel);
-        parcelService.takeParcel(parcel);
+        return parcelService.takeParcel(parcel);
     }
 }

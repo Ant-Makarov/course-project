@@ -18,9 +18,9 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/save")
-    public void saveUser(@RequestBody User user) {
+    public User saveUser(@RequestBody User user) {
         log.info("Handling user registration: " + user);
-        userService.saveUser(user);
+        return userService.saveUser(user);
     }
 
 

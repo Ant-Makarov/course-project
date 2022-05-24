@@ -17,25 +17,28 @@ public class ParcelService {
     private final ParcelRepository parcelRepository;
     private final NotificationService notificationService;
 
-    public void saveParcel(Parcel parcel) {
+    public Parcel saveParcel(Parcel parcel) {
         parcel.setCreationDate(new Timestamp(System.currentTimeMillis()));
         parcel.setSendStatus("Not delivered");
-        parcelRepository.save(parcel);
+        Parcel savedParcel = parcelRepository.save(parcel);
         log.info("Parcel has been created successfully: " + parcel);
+        return savedParcel;
     }
 
 
-    public void takeParcel(Parcel p) {
+    public Parcel takeParcel(Parcel p) {
         Parcel parcel = parcelRepository.getById(p.getParcelSendID());
+        Parcel takenParcel;
         if(checkStatus(parcel)) {
             parcel.setChangeDate(new Timestamp(System.currentTimeMillis()));
             parcel.setSendStatus("Delivered");
-            parcelRepository.save(parcel);
+            takenParcel = parcelRepository.save(parcel);
             log.info("Parcel: " + "Has been successfully delivered!");
         } else {
             log.error("We are sorry but the parcel: " + parcel + "was overdue :(");
             throw new ParcelWasOverdueException(parcel.getSendStatus());
         }
+        return takenParcel;
     }
 
     public boolean checkStatus(Parcel p) {
