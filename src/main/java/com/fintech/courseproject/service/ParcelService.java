@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 public class ParcelService {
 
     private final ParcelRepository parcelRepository;
-    private final NotificationService notificationService;
+
 
     public Parcel saveParcel(Parcel parcel) {
         parcel.setCreationDate(new Timestamp(System.currentTimeMillis()));
